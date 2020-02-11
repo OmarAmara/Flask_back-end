@@ -1,5 +1,5 @@
 ## imported modules
-from flask import Flask
+from flask import Flask, jsonify
 
 ## development
 DEBUG = True
@@ -13,6 +13,9 @@ app = Flask(__name__)
 def index():
 	return 'Hello World of Flask'
 
+@app.route('/test_json')
+def test_json_list():
+	return jsonify(['hello', 'there', 'flaskers'])
 
 
 

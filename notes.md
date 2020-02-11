@@ -22,13 +22,17 @@ step 5:
 		   WARNING: This is a development server. Do not use it in a production deployment.
 		   Use a production WSGI server instead.
 		 * Debug mode: on
-		 * Running on http://127.0.0.1:8000/ (Press CTRL+C to quit)
+		 * Running on http://....(irrelevant number):8000/ (Press CTRL+C to quit)
 		 * Restarting with stat
 		 * Debugger is active!
 		 * Debugger PIN
 
 step 6:
 	Create routes and confirm by running server as in step 5 and go to route in browser or postman(app).
+
+	note: To confirm that it works, you should see the message being returned in the browser and a line pop-up in terminal confirming hitting port, date and route with status code.
+
+7: jsonify
 
 
 
