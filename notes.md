@@ -1,17 +1,17 @@
 step 0:
-		.gitignore      --> .env & other relatables
+		create(for python): .gitignore      --> .env & other relatables
 
 step 1:
-		virtualenv .env -p python3
+		run: 'virtualenv .env -p python3'
 
 step 2:
-		source .env/bin/activate
+		run: 'source .env/bin/activate'
 
 step 3:
-		pip3 install flask
+		run: 'pip3 install flask'
 
 step 4:
-		pip3 freeze > requirements.txt
+		run: 'pip3 freeze > requirements.txt'
 
 step 5:
 	Program server --> then run command in CLI UI: 'python3 app.py' (python_runtime_environment & python_file_name).
@@ -32,8 +32,17 @@ step 6:
 
 	note: To confirm that it works, you should see the message being returned in the browser and a line pop-up in terminal confirming hitting port, date and route with status code.
 
-7: jsonify
+step 7: jsonify
 
+step 8:
+	install peewee & psycopg2/ run: 'pip3 install pewee psycopg2'
+	re-run: 'pip3 freeze > requirements.txt'
+
+
+
+note: 
+	-	always run 'pip3 freeze > requirements.txt' after installing a module.
+	-	run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
 
 
 
