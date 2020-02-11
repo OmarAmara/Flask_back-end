@@ -132,3 +132,9 @@ dmypy.json
 
 # pytype static type analyzer
 .pytype/
+
+# flask related
+.DS_store
+.flaskenv
+.pyc
+.pyo

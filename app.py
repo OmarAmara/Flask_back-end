@@ -17,6 +17,11 @@ def index():
 def test_json_list():
 	return jsonify(['hello', 'there', 'flaskers'])
 
+# (URL parameter)
+@app.route('/welcome_message/<username>')
+def welcome_message(username):
+	return f'Hello, {username}. What are we having in our flask today? Anything to drink, maybe some CRUD?'
+
 
 
 

@@ -1,5 +1,5 @@
 step 0:
-		.gitignore      --> .env
+		.gitignore      --> .env & other relatables
 
 step 1:
 		virtualenv .env -p python3
