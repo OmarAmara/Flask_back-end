@@ -39,6 +39,13 @@ step 8:
 	install peewee & psycopg2/ run: 'pip3 install pewee psycopg2'
 	re-run: 'pip3 freeze > requirements.txt'
 
+step 9:
+	initialize database tables and connections in models.py file, then import and initialize in app.py.
+
+step 10:
+	Create a resource folder for accounts, set-up for account routes(controllers). Import resources/blueprint and register blueprint (as middleware like controller)
+
+
 
 
 

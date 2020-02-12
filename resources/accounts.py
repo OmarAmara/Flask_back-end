@@ -9,6 +9,14 @@ from flask import Blueprint
 # second arg. --> it's import_name
 accounts = Blueprint('accounts', 'accounts')
 
-@accounts.route('/')
+### Account routes
+
+# account index
+@accounts.route('/', methods=['GET'])
 def accounts_index():
 	return "Hello, (accounts resource working properly)"
+
+# account create route
+@accounts.route('/', methods=['POST'])
+def create_account():
+	return "you hit account create route"
