@@ -65,7 +65,17 @@ step 12:
 ***{I highly encourage you to look at the react-app-accounts before continuing as it will help you with your understanding with why we need to implement the changes/ additions in the following steps: }
 
 step 13:
-	
+	change returned data in routes to return a json object from jsonify.
+
+step 14:
+	install and import flask_cors module to enter origin acceptions and enable use of session authentication:
+	run in console CLI: 'pip3 install flask_cors' (don't forget to run 'pip3 freeze > requirements.txt' afterward).
+
+step 15:
+	Import CORS from flask_cors in app.py.
+	Set CORS parameters: CORS({add to blueprint: insert blueprint name}, {origins accepted: origin name, in our case, localhost:...}, {whether it accepts credentials/ sessions: Boolean}) --> see code in app.py for details
+
 
 
 note: - ******* run: 'deactivate'. To leave virtual environment. - always run 'pip3 freeze > requirements.txt' after installing a module. - run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
+

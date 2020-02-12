@@ -62,11 +62,15 @@ step 12:
 ***{I highly encourage you to look at the react-app-accounts before continuing as it will help you with your understanding with why we need to implement the changes/ additions in the following steps: }
 
 step 13:
+	change returned data in routes to return a json object from jsonify.
 
+step 14:
+	install and import flask_cors module to enter origin acceptions and enable use of session authentication:
+	run in console CLI: 'pip3 install flask_cors' (don't forget to run 'pip3 freeze > requirements.txt' afterward).
+	Import CORS from flask_cors in app.py
 
-
-
-
+step 15:
+	
 
 
 note: 

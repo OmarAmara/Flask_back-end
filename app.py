@@ -4,6 +4,10 @@
 	# somewhat relatable to app.locals in express servers
 from flask import Flask, jsonify, g
 
+# package that will allow us to handle CORS
+# https://flask-cors.readthedocs.io/en/latest/
+from flask_cors import CORS
+
 # blueprint form ./resources/accounts
 from resources.accounts import accounts
 
@@ -18,7 +22,15 @@ PORT = 8000 # hide in production/ when deploying, local env. now
 app = Flask(__name__)
 
 
-# use blueprint (component/section of app) to handle accounts relatables
+# note: A domain name is considered an 'origin', currently our 'origin' for the development api server
+# is localhost:... ; otherwise, it would be a hosted url. Same would go for the server that would
+# try to access the API. This in a way 'sets expectations of who to connect/ hear from'
+# arguments in order:
+	# 1. add cors to blueprint, 2. list of allowed origins, 3. allows reqs. with cookies attached, allowing sessions for auth.
+CORS(dogs, origins=['http://localhost:3000'], supports_credentials=True)
+
+
+# use blueprint (component/section of app) to handle accounts relatables, set controllers
 # analogous to app.use('/accounts', accountController) in express node servers
 app.register_blueprint(accounts, url_prefix='/api/v1/accounts')
 
