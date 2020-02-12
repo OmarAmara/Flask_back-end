@@ -1,5 +1,7 @@
 # Flask_back-end
 
+## Tutorial for creating a Flask Back-end API -- this one will be for accounts! Not that you would like to share your accounts, legally.
+
 -	run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
 
 ```bash
