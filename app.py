@@ -27,7 +27,7 @@ app = Flask(__name__)
 # try to access the API. This in a way 'sets expectations of who to connect/ hear from'
 # arguments in order:
 	# 1. add cors to blueprint, 2. list of allowed origins, 3. allows reqs. with cookies attached, allowing sessions for auth.
-CORS(dogs, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(accounts, origins=['http://localhost:3000'], supports_credentials=True)
 
 
 # use blueprint (component/section of app) to handle accounts relatables, set controllers
