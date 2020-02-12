@@ -8,8 +8,12 @@ step 2:
 		run: 'source .env/bin/activate'
 		**(see notes below: need to 'deactivate' environment when done)
 
+step?: (SKIP STEPS 3-4 WHEN CLONING ALREADY EXISTING FLASK APP FROM REPOSITORY)
+		'pip3 install -r requirements.txt'
+
 step 3:
 		run: 'pip3 install flask'
+
 
 step 4:
 		run: 'pip3 freeze > requirements.txt'
