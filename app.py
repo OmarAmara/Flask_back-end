@@ -1,5 +1,7 @@
 ## imported modules
 from flask import Flask, jsonify
+# helpful -- google: 'namespacing in python'
+import models
 
 ## development
 DEBUG = True
@@ -28,4 +30,6 @@ def welcome_message(username):
 
 ## listener
 if __name__ == '__main__':
+	# requiring DB before listener below. Sets-up tables in models.py
+	models.initialize()
 	app.run(debug=DEBUG, port=PORT)

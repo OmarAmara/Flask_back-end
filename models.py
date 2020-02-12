@@ -9,6 +9,7 @@ from peewee import *
 import datetime
 
 
+#### .gitignore DB connection during deployment, outside of local virtual env.
 ## change to psql later for deployment
 # portable data for development
 # value: Database connection string
