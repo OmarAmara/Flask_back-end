@@ -1,5 +1,8 @@
 ### imported modules
-from flask import Flask, jsonify
+# g allows use of global variables for life of this connection?
+	# can be used to count connection and store in database?
+	# somewhat relatable to app.locals in express servers
+from flask import Flask, jsonify, g
 
 # blueprint form ./resources/accounts
 from resources.accounts import accounts
@@ -19,6 +22,22 @@ app = Flask(__name__)
 # analogous to app.use('/accounts', accountController) in express node servers
 app.register_blueprint(accounts, url_prefix='/api/v1/accounts')
 
+
+# decrease SQL connection pool:
+# will connect to DB before every request, then close DB connection after every request
+@app.before_request # this decorator specifically runs before requests
+def before_request():
+	"""Connect to the DB before each request"""
+	# stores DB as a global var. in g
+	g.db = models.DATABASE
+	g.db.connect()
+
+@app.after_request
+def after_request():
+	"""Closes the DB connection after each request"""
+	g.db.close()
+	# sends response back to client (in this app, JSON!)
+	return response
 
 ## routes
 @app.route('/') # @ decorator

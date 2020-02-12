@@ -1,7 +1,9 @@
 ## 'controller' file for Accounts
 import models
 
-from flask import Blueprint
+# request -- this sends client's request to global request object
+# reassigns on every request containing a body
+from flask import Blueprint, request, jsonify # jsonify needed to interperate JSON from request body
 
 
 
@@ -19,4 +21,9 @@ def accounts_index():
 # account create route
 @accounts.route('/', methods=['POST'])
 def create_account():
+	# .get_json() attaches to request object and extracts JSON from the request body
+	# similar to req.body in express servers!
+	payload = request.get_json()
+	print(payload) # prints request data on terminal
 	return "you hit account create route"
+
