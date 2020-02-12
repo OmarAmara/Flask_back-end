@@ -1,0 +1,3 @@
+## file establishes folder to be able to import files...
+## look up: https://docs.python.org/3/reference/import.html#regular-packages
+## this file is executed when/ if resources are imported

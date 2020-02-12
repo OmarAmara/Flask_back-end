@@ -1,7 +1,7 @@
-import datetime
-### all models
+### all models file
 
 ## modules
+import datetime
 # peewee (similar to mongoose)
 # import *, imports everything! including:
 	# SqliteDatabase (adapter)

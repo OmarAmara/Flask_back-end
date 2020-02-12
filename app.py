@@ -1,14 +1,24 @@
-## imported modules
+### imported modules
 from flask import Flask, jsonify
+
+# blueprint form ./resources/accounts
+from resources.accounts import accounts
+
 # helpful -- google: 'namespacing in python'
 import models
 
-## development
+"""# development #"""
 DEBUG = True
 PORT = 8000 # hide in production/ when deploying, local env. now
 
 
 app = Flask(__name__)
+
+
+# use blueprint (component/section of app) to handle accounts relatables
+# analogous to app.use('/accounts', accountController) in express node servers
+app.register_blueprint(accounts, url_prefix='/api/v1/accounts')
+
 
 ## routes
 @app.route('/') # @ decorator
