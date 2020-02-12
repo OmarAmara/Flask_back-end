@@ -58,6 +58,11 @@ step 11:
 step 12:
 	Back to account.py --> import model_to_dict from playhouse.shortcuts(brought to you by peewee!). This will make the data we retrieve from body jsonifiable. Use peewee model to create form data on to DB. Then we will use playhouse...
 
+****{Now we will be transitioning to the react-app-accounts repository in OAmara GitHub to start implementing a front end react app to show and add to this API. If you are only interested in creating the API without a fron end then skip this process.}
+***{I highly encourage you to look at the react-app-accounts before continuing as it will help you with your understanding with why we need to implement the changes/ additions in the following steps: }
+
+step 13:
+
 
 
 

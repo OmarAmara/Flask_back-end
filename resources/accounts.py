@@ -18,7 +18,17 @@ accounts = Blueprint('accounts', 'accounts')
 # account index
 @accounts.route('/', methods=['GET'])
 def accounts_index():
-	return "Hello, (accounts resource working properly)"
+	"""Get all Accounts from the DB as JSON"""
+	all_accounts_query = models.Account.select()
+
+	# we need a list of dictionaries...
+	account_dicts = [model_to_dict(d) for d in all_accounts_query]
+
+	return jsonify(
+		data=account_dicts,
+		message=f'Successfully retrieved {len(account_dicts)} Accounts',
+		status=200
+	), 200
 
 # account create route
 @accounts.route('/', methods=['POST'])
@@ -38,8 +48,11 @@ def create_account():
 		# this would cause an error --> TypeError: Object of type 'Account' is not JSON serializable
 
 	# model_to_dict, from playhouse, converts mordel to a dict.
-	account_dict = model_to_dict(account)
+	account_dicts = model_to_dict(account)
 
-	return jsonify(data=account_dict, status={'message': 'Successfully created dog!'}), 201
-
+	return jsonify(
+		data=account_dicts,
+		message='Successfully created Account!',
+		status=201,
+	), 201
 
