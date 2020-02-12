@@ -33,7 +33,7 @@ def before_request():
 	g.db.connect()
 
 @app.after_request
-def after_request():
+def after_request(response):
 	"""Closes the DB connection after each request"""
 	g.db.close()
 	# sends response back to client (in this app, JSON!)

@@ -5,6 +5,8 @@ import models
 # reassigns on every request containing a body
 from flask import Blueprint, request, jsonify # jsonify needed to interperate JSON from request body
 
+# will print table on console legibly...
+from playhouse.shortcuts import model_to_dict
 
 
 # first arg. --> blueprint's name
