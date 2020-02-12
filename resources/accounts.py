@@ -26,6 +26,20 @@ def create_account():
 	# .get_json() attaches to request object and extracts JSON from the request body
 	# similar to req.body in express servers!
 	payload = request.get_json()
-	print(payload) # prints request data on terminal
-	return "you hit account create route"
+	print('\n', payload) # prints request data on terminal
+	# utilizes peewee model to add to DB
+	account = models.Account.create(institution=payload['institution'], name=payload['name'], balance=payload['balance'])
+	print(account) # just prints ID, utilize: sqlite3 --> 'sqlite3 accounts.sqlite'
+	print(account.__dict__) # class attribute __dict__--> makes info useful!
+
+	# print(dir(account)) # prints ALL property methods(can be useful, just annoying (and PTSD from method callback error stack) for now)
+
+	# note: you cannot directly jsonify account b/c it's not a dictionary or jsonifiable object
+		# this would cause an error --> TypeError: Object of type 'Account' is not JSON serializable
+
+	# model_to_dict, from playhouse, converts mordel to a dict.
+	account_dict = model_to_dict(account)
+
+	return jsonify(data=account_dict, status={'message': 'Successfully created dog!'}), 201
+
 

@@ -45,6 +45,15 @@ step 9:
 step 10:
 	Create a resource folder for accounts, set-up for account routes(controllers). Import resources/blueprint and register blueprint (as middleware like controller)
 
+step 11:
+	Import request from flask into account.py resources to use request object data; json, form data,... and use .get_json() to extract/utilize JSON data.
+	Since we are using JSON as request body data, import jsonify from flask as well.
+
+	Import 'g' from flask in app.py for utilizing global variable to have access to DB and request body. Create before/after_request routes to efficiently utilize Database connection pool.
+
+step 12:
+	Back to account.py --> import model_to_dict from playhouse.shortcuts(brought to you by peewee!). This will make the data we retrieve from body jsonifiable. Use peewee model to create form data on to DB. Then we will use playhouse...
+
 
 
 
