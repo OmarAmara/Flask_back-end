@@ -1,3 +1,4 @@
+import datetime
 ### all models
 
 ## modules
@@ -5,8 +6,8 @@
 # import *, imports everything! including:
 	# SqliteDatabase (adapter)
 	# Model -- Model() class
+
 from peewee import *
-import datetime
 
 
 #### .gitignore DB connection during deployment, outside of local virtual env.
@@ -22,10 +23,10 @@ class Account(Model):
 	institution = CharField() # associated bank
 	name = CharField()
 	balance = IntegerField()
-	created_at = DataTimeField(default=datetime.datetime.now)
+	created_at = DateTimeField(default=datetime.datetime.now)
 
 	# specialized constructor to specify to class how to connect to DB
-	class META:
+	class Meta:
 		database = DATABASE
 
 

@@ -40,11 +40,10 @@ step 8:
 
 
 
+
+
+
 note: 
 	-	always run 'pip3 freeze > requirements.txt' after installing a module.
 	-	run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
-
-
-
-
 
