@@ -56,3 +56,16 @@ def create_account():
 		status=201,
 	), 201
 
+# account delete/destroy route
+@accounts.route('/<id>', methods=['Delete'])
+def delete_account(id):
+	# deleting data based on id identifier
+	delete_query = models.Account.delete().where(models.Account.id == id)
+	delete_query.execute()
+	return jsonify(
+		data={},
+		message=f'Successfully deleted Account with id {id}',
+		status=200
+	), 200
+
+
