@@ -65,7 +65,7 @@ def register():
 
 		return jsonify(
 			data=user_dict,
-			message=f'Successfully registered {user_dict['email']}',
+			message=f"Successfully registered {user_dict['email']}",
 			status=201
 		), 201
 
