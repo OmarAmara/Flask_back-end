@@ -29,7 +29,7 @@ DATABASE = SqliteDatabase('accounts.sqlite')
 class User(UserMixin, Model):
 	username = CharField(unique=True)
 	email = CharField(unique=True)
-	password = Charfield()
+	password = CharField()
 
 	class Meta:
 		database = DATABASE

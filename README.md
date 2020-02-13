@@ -98,7 +98,11 @@ step 21:
 	Set secret_key string and instantiate, then connect LoginManager to app.
 
 step 22:
+	Create users.py file in resources and import model, blueprint then start making routes. Let's just make a test index route for now.
+	Set-up users resource, blueprint and give access to origins in app.py.
 
+step 23:
+	(routes) 
 
 note: - ******* run: 'deactivate'. To leave virtual environment. - always run 'pip3 freeze > requirements.txt' after installing a module. - run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
 

@@ -12,8 +12,10 @@ from flask_cors import CORS
 # https://flask-login.readthedocs.io/en/latest/#flask_login.LoginManager
 from flask_login import LoginManager
 
-# blueprint form ./resources/accounts
+# accounts blueprint form ./resources/accounts
 from resources.accounts import accounts
+# users blueprint from ./resources/users
+from resources.users import users
 
 # helpful -- google: 'namespacing in python'
 import models
@@ -49,11 +51,13 @@ login_manager.init_app(app)
 # arguments in order:
 	# 1. add cors to blueprint, 2. list of allowed origins, 3. allows reqs. with cookies attached, allowing sessions for auth.
 CORS(accounts, origins=['http://localhost:3000'], supports_credentials=True)
+CORS(users, origins=['http://localhost:3000'], supports_credentials=True)
 
 
 # use blueprint (component/section of app) to handle accounts relatables, set controllers
 # analogous to app.use('/accounts', accountController) in express node servers
 app.register_blueprint(accounts, url_prefix='/api/v1/accounts')
+app.register_blueprint(users, url_prefix='/api/v1/users')
 
 
 # decrease SQL connection pool:
