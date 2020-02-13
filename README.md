@@ -102,7 +102,7 @@ step 22:
 	Set-up users resource, blueprint and give access to origins in app.py.
 
 step 23:
-	(routes) 
+	(routes) Let's create a register route that will create a user, verify proper credentials and query if user already exists, encrypts password and sends json data to return a success/ error message.
 
 note: - ******* run: 'deactivate'. To leave virtual environment. - always run 'pip3 freeze > requirements.txt' after installing a module. - run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
 
