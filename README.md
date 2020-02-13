@@ -83,6 +83,14 @@ step 16:
 step 17:
 	We will ad an update route for fron end apps to be able to update data on API.
 
+step 18 -- We will be adding authentication:
+	Install following: 'pip3 install flask_login flask-bcrypt' (dont forget about updating requirements.txt!)
+
+step 19:
+	import flask_login to models file in order to create User model and tables. This will enable us to easily set-up User class methods, session/ login auth functionality.
+
+step 20:
+	
 
 note: - ******* run: 'deactivate'. To leave virtual environment. - always run 'pip3 freeze > requirements.txt' after installing a module. - run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
 
