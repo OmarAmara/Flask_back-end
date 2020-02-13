@@ -69,3 +69,22 @@ def delete_account(id):
 	), 200
 
 
+# account update/ edit PUT route
+@accounts.route('/<id>', methods=['PUT'])
+def update_account(id):
+	payload = request.get_json()
+	# unpack operator * & **: https://codeyarns.github.io/tech/2012-04-25-unpack-operator-in-python.html
+	update_query = models.Account.update(**payload).where(models.Account.id == id)
+
+	update_query.execute()
+
+	# (benefits front end to retrive this)
+	update_account = models.Account.get_by_id(id)
+
+	return jsonify(
+ 		data=model_to_dict(update_account),
+  		message=f'Successfully updated account with id {id}',
+  		status=200
+	), 200
+
+

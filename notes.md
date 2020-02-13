@@ -67,10 +67,18 @@ step 13:
 step 14:
 	install and import flask_cors module to enter origin acceptions and enable use of session authentication:
 	run in console CLI: 'pip3 install flask_cors' (don't forget to run 'pip3 freeze > requirements.txt' afterward).
-	Import CORS from flask_cors in app.py
 
 step 15:
-	
+	Import CORS from flask_cors in app.py
+	Set CORS parameters: CORS({add to blueprint: insert blueprint name}, {origins accepted: origin name, in our case, localhost:...}, {whether it accepts credentials/ sessions: Boolean}) --> see code in app.py for details
+
+-- CHECK COMMITS --
+
+step 16:
+	We will enable our API to delete data by creating a destroy route.
+
+step 17:
+	We will ad an update route for fron end apps to be able to update data on API.
 
 
 note: 

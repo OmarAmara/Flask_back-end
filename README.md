@@ -75,9 +75,13 @@ step 15:
 	Import CORS from flask_cors in app.py.
 	Set CORS parameters: CORS({add to blueprint: insert blueprint name}, {origins accepted: origin name, in our case, localhost:...}, {whether it accepts credentials/ sessions: Boolean}) --> see code in app.py for details
 
+-- CHECK COMMITS --
+
 step 16:
 	We will enable our API to delete data by creating a destroy route.
 
+step 17:
+	We will ad an update route for fron end apps to be able to update data on API.
 
 
 note: - ******* run: 'deactivate'. To leave virtual environment. - always run 'pip3 freeze > requirements.txt' after installing a module. - run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
