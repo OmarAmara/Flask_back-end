@@ -90,7 +90,15 @@ step 19:
 	import flask_login to models file in order to create User model and tables. This will enable us to easily set-up User class methods, session/ login auth functionality.
 
 step 20:
-	
+	In Models.py, import UserMixin from flask_login and use this to create User Class. 
+	Connect user to same DB(Database) and set-up table creation.
+
+step 21:
+	Import and set-up LoginManager from flask_login in app.py file. This will be our secret tool that enables session/login.
+	Set secret_key string and instantiate, then connect LoginManager to app.
+
+step 22:
+
 
 note: - ******* run: 'deactivate'. To leave virtual environment. - always run 'pip3 freeze > requirements.txt' after installing a module. - run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
 

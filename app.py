@@ -8,6 +8,10 @@ from flask import Flask, jsonify, g
 # https://flask-cors.readthedocs.io/en/latest/
 from flask_cors import CORS
 
+# LoginManager is our primary tool that will coordinate sessions/ login authorization.
+# https://flask-login.readthedocs.io/en/latest/#flask_login.LoginManager
+from flask_login import LoginManager
+
 # blueprint form ./resources/accounts
 from resources.accounts import accounts
 
@@ -20,6 +24,23 @@ PORT = 8000 # hide in production/ when deploying, local env. now
 
 
 app = Flask(__name__)
+
+
+## review: # https://flask-login.readthedocs.io/en/latest/#configuring-your-application
+# We will do this in three steps:
+
+# set-up a secret key. Any string you like.
+# implement: https://flask.palletsprojects.com/en/1.1.x/quickstart/#sessions
+############# THIS(below) SHOULD and WILL be placed into an environment variable!
+# ^^
+app.secret_key = "Even Alfred has a secret tool belt, the LoginManager"
+"""^Place as variable in ENV file^"""
+
+# Instantiate LoginManager to have access as variable
+login_manager = LoginManager()
+
+# connect application to login manager
+login_manager.init_app(app)
 
 
 # note: A domain name is considered an 'origin', currently our 'origin' for the development api server
