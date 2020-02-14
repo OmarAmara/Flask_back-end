@@ -4,7 +4,7 @@ import models
 from flask import Blueprint, request, jsonify
 from flask_bcrypt import generate_password_hash, check_password_hash
 # enables sessions(cookies)
-from flask_login import login_user
+from flask_login import login_user, current_user
 from playhouse.shortcuts import model_to_dict
 
 # create users blueprint
@@ -136,6 +136,19 @@ def user_index():
 	user_dicts_without_pw = map(remove_password, user_dicts)
 
 	return jsonify(data=list(user_dicts_without_pw)), 200
+
+
+
+
+# demonstration of current_user session use
+# requires user_loader to be set in app.py
+@users.route('/logged_in', methods=['GET'])
+def get_logged_in_user():
+	# IMPORTANT READ: https://flask-login.readthedocs.io/en/latest/#flask_login.current_user
+	print(current_user) # logged in user
+	user_dict = model_to_dict(current_user)
+	print(user_dict)
+	return jsonify(data=user_dict), 200
 
 
 

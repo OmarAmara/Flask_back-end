@@ -5,6 +5,8 @@ import models
 # reassigns on every request containing a body
 from flask import Blueprint, request, jsonify # jsonify needed to interperate JSON from request body
 
+from flask_login import current_user
+
 # will print table on console legibly...
 from playhouse.shortcuts import model_to_dict
 
@@ -38,7 +40,10 @@ def create_account():
 	payload = request.get_json()
 	print('\n', payload) # prints request data on terminal
 	# utilizes peewee model to add to DB
-	account = models.Account.create(institution=payload['institution'], name=payload['name'], balance=payload['balance'])
+	account = models.Account.create(
+		institution=current_user.id, 
+		name=payload['name'], 
+		balance=payload['balance'])
 	print(account) # just prints ID, utilize: sqlite3 --> 'sqlite3 accounts.sqlite'
 	print(account.__dict__) # class attribute __dict__--> makes info useful!
 
@@ -48,10 +53,12 @@ def create_account():
 		# this would cause an error --> TypeError: Object of type 'Account' is not JSON serializable
 
 	# model_to_dict, from playhouse, converts mordel to a dict.
-	account_dicts = model_to_dict(account)
+	account_dict = model_to_dict(account)
+
+	account_dict['institution'].pop('password')
 
 	return jsonify(
-		data=account_dicts,
+		data=account_dict,
 		message='Successfully created Account!',
 		status=201,
 	), 201
