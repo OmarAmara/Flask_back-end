@@ -4,7 +4,7 @@ import models
 from flask import Blueprint, request, jsonify
 from flask_bcrypt import generate_password_hash, check_password_hash
 # enables sessions(cookies)
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, logout_user
 from playhouse.shortcuts import model_to_dict
 
 # create users blueprint
@@ -145,10 +145,46 @@ def user_index():
 @users.route('/logged_in', methods=['GET'])
 def get_logged_in_user():
 	# IMPORTANT READ: https://flask-login.readthedocs.io/en/latest/#flask_login.current_user
-	print(current_user) # logged in user
-	user_dict = model_to_dict(current_user)
-	print(user_dict)
-	return jsonify(data=user_dict), 200
+	# print(current_user) # logged in user
+	# user_dict = model_to_dict(current_user)
+	# print(user_dict)
+	# return jsonify(data=user_dict), 200
+
+	# identify if user is logged in by using current_user.is_authenticated
+	# for more info look up in docs: current_user.is_authenticated
+	if not current_user.is_authenticated:
+		return jsonify(
+			data={},
+			message='No user is currently logged in',
+			status=401
+		), 401
+	else: #logged in
+		user_dict = model_to_dict(current_user)
+		user_dict.pop('password')
+		return jsonify(
+			data=user_dict,
+			message=f"Current user is {user_dict['email']}",
+			status=200
+		), 200
+
+
+# session info persists even after server is restarted.
+# more info: https://flask.palletsprojects.com/en/1.1.x/api/#sessions
+	# https://flask-login.readthedocs.io/en/latest/#remember-me
+	# https://flask-login.readthedocs.io/en/latest/#fresh-logins
+	# https://flask-login.readthedocs.io/en/latest/#session-protection
+	# https://flask-login.readthedocs.io/en/latest/#disabling-session-cookie-for-apis
+# Need to create logout route to destroy session/ login_user
+@users.route('/logout', methods=['GET'])
+def logout():
+	# per docs: following this https://flask-login.readthedocs.io/en/latest/#login-example
+	logout_user() # docs
+	return jsonify(
+		data={},
+		message="Successfully logged out.",
+		status=200
+	), 200
+
 
 
 

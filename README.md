@@ -123,7 +123,10 @@ step 29:
 	Include user_loader from login_manager in app.py. This will allow us to access login_user object (session/ cookie object).
 
 step 30:
-	
+	Have model account created route create account based on who is logged in.
+
+step 31:
+	Create logout route since session/cookie/login_manager data is not destroyed when server restarts unlike express servers.
 
 note: - ******* run: 'deactivate'. To leave virtual environment. - always run 'pip3 freeze > requirements.txt' after installing a module. - run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
 
