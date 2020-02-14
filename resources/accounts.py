@@ -21,14 +21,17 @@ accounts = Blueprint('accounts', 'accounts')
 @accounts.route('/', methods=['GET'])
 def accounts_index():
 	"""Get all Accounts from the DB as JSON"""
-	all_accounts_query = models.Account.select()
+	# all_accounts_query = models.Account.select()
 
 	# we need a list of dictionaries...
-	account_dicts = [model_to_dict(d) for d in all_accounts_query]
+	#changed to only display created accounts by user logged in
+	current_user_account_dicts = [model_to_dict(account) for account in current_user.accounts]
+
+	print(current_user_account_dicts)
 
 	return jsonify(
-		data=account_dicts,
-		message=f'Successfully retrieved {len(account_dicts)} Accounts',
+		data=current_user_account_dicts,
+		message=f'Successfully retrieved {len(current_user_account_dicts)} Accounts',
 		status=200
 	), 200
 
