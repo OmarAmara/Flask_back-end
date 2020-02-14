@@ -45,6 +45,16 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 
+# registration/ login routes creates session with login_user, loader is needed to access login_user object
+# see https://flask-login.readthedocs.io/en/latest/#how-it-works
+@login_manager.user_loader
+def load_user(userid):
+	try:
+		return models.User.get(models.User.id == user.id)
+	except models.DoesNotExist:
+		return None
+
+
 # note: A domain name is considered an 'origin', currently our 'origin' for the development api server
 # is localhost:... ; otherwise, it would be a hosted url. Same would go for the server that would
 # try to access the API. This in a way 'sets expectations of who to connect/ hear from'

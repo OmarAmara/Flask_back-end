@@ -116,5 +116,11 @@ step 26:
 step 27:
 	Make route under accounts.py that will allow a user to create account when logged in...
 
+step 28:
+	Create route under model that contains foreign key so that a specific user_id, this will be user who is logged in creating the account, becomes associated through institution.
+
+step 29:
+	
+
 note: - ******* run: 'deactivate'. To leave virtual environment. - always run 'pip3 freeze > requirements.txt' after installing a module. - run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
 
