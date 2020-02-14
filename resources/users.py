@@ -188,3 +188,57 @@ def logout():
 
 
 
+
+
+# EXERCISE:  
+
+# IN A BRANCH!!! 
+# make the other four account routes...
+# A. require login (if that makes sense), and 
+# B. only let user C(R)UD their own accounts (i.e. use the relation)
+
+
+# NOTE: it's 100% fine and normal to have 
+# --> ...some things where users only CRUD their own data (think: user (account) settings)
+
+# --> ....and some things where users might CRUD (or just CR or just R) data 
+# that's related to other users' data 
+# think: comments on someone else's post or pix of their accounts-- 
+	#^^^^^Some of this would not necessarily make sense for current models, like --
+		#-- who would want to share their accounts, but remember this is for practice/ learning.
+			# ^^make something that makes sense to you, or do it to learn for now!
+    # ooh! and maybe only if you're that person's "friend" -- 
+    # ooh! ooh! and also! think: how would you implement "friendship" in a flask API?
+
+# ---> ...and some things that are wide open (think: likes?, maybe login/logout 
+# stuff?, but maybe not?  did you notice that in the flask_login docs that they 
+# had @login_required to logout? consider: why might someone do this?)
+
+# just... think about what's appropriate in the situation you're building for..
+# or like maybe seeing all of someone else's accountss shouldn't require a login?
+# but like maybe if it was to-do lists/ goals, those should be private.  etc. 
+
+
+# OPTIONAL -- maybe you should add other routes?  
+
+# like...think about what's most _useful_ in the app you're trying to build
+# try not to just repeat exactly what you see....
+
+# and maybe there should be one route that just lists a particular user's accounts 
+# and another one that lists all the accounts in the site?  etc etc
+
+# or like maybe the account show route should behave differently depending on 
+# whether user is logged in or not (like maybe it gives more info to logged in 
+# users) and whether user is accessing their own account or someone else's (shows 
+# more data if it's your account)? etc etc
+
+# or maybe what if you had a route that that lets you search for a certain account name? 
+
+# etc etc
+
+# just make sure you're building something specific to the needs of whatever
+# project/user/client you're servicing
+
+
+
+
