@@ -120,7 +120,22 @@ def login():
 		), 401
 
 
+# Delete This Route After development:
+# User index
+@users.route('/all', methods=['GET'])
+def user_index():
+	users = models.User.select()
 
+	user_dicts = [model_to_dict(u) for u in users]
+
+	# queery retrieves user passwords as well. Following function will take out passwords before showing data.
+	def remove_password(u):
+		u.pop('password')
+		return u
+
+	user_dicts_without_pw = map(remove_password, user_dicts)
+
+	return jsonify(data=list(user_dicts_without_pw)), 200
 
 
 
