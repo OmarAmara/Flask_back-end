@@ -2,7 +2,7 @@
 import models
 
 from flask import Blueprint, request, jsonify
-from flask_bcrypt import generate_password_hash
+from flask_bcrypt import generate_password_hash, check_password_hash
 # enables sessions(cookies)
 from flask_login import login_user
 from playhouse.shortcuts import model_to_dict
@@ -61,13 +61,63 @@ def register():
 		# do not want to send encrypted password string back to user.
 		user_dict.pop('password')
 
-
-
 		return jsonify(
 			data=user_dict,
 			message=f"Successfully registered {user_dict['email']}",
 			status=201
 		), 201
+
+
+# user login POST route
+@users.route('/login', methods=['POST'])
+def login():
+	payload = request.get_json()
+
+	payload['email'] = payload['email'].lower()
+	payload['username'] = payload['username'].lower()
+
+	try:
+		# find user by email
+		user = models.User.get(models.User.email == payload['email'].lower())
+
+		# if email was found, THEN compare to password
+		user_dict = model_to_dict(user)
+		# use bcrypt to check password:
+		# 1st arg = encryp password being checked against using check_password_hash
+		# 2nd arg = password attempt provided by user
+		password_to_compare = check_password_hash(user_dict['password'], payload['password'])
+
+		# if password comparison matches
+		if password_to_compare:
+			# create login session
+			login_user(user)
+
+			# remove password to not display with data
+			user_dict.pop('password')
+
+			return jsonify(
+				data=user_dict,
+				message=f"Successfully logged in {user_dict} to API",
+				status=200
+			), 200
+
+		else:
+			# seen in server/ back-end
+			print('Password does not match')
+			return jsonify(
+				data={},
+				message="Email or password is incorrect",
+				status=401
+			), 401
+
+	# user not found
+	except models.DoesNotExist:
+		print('Username/ Email does not match')
+		return jsonify(
+			data={},
+			message='Email or Password is incorrect',
+			status=401
+		), 401
 
 
 
