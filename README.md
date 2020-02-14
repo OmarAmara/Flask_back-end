@@ -109,7 +109,12 @@ step 24:
 
 step 25:
 	We will now be creating a one to many relationship with accounts. How can we do this without refacotoring our code? Maybe institutions/ banks will contain accounts? Other ideas? ForeignKey will be utilized and backreference to banks.
-	
+
+step 26:
+	Create helper route for users index. Use only for development to view all users.
+
+step 27:
+	Make route under accounts.py that will allow a user to create account when logged in...
 
 note: - ******* run: 'deactivate'. To leave virtual environment. - always run 'pip3 freeze > requirements.txt' after installing a module. - run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
 

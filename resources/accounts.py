@@ -88,3 +88,30 @@ def update_account(id):
 	), 200
 
 
+# route to create account associated with institution that has the id
+@accounts.route('/<institution_id>', methods=['POST'])
+def create_account_with_institution(institution_id):
+	payload = request.get_json()
+	print(payload)
+
+	# creat account with associated <institution_id>
+	account = models.Account.create(
+		institution=institution_id,
+		name=payload['name'],
+		balance=payload['balance']
+	)
+
+	account_dict = model_to_dict(account)
+
+	print(account_dict) # see how institution is attached
+
+	# remove password from user in isntitution
+	account_dict['institution'].pop('password')
+
+	return jsonify(
+		data=account_dict,
+		message="Successfully created account",
+		status=201
+	), 201
+
+
