@@ -5,7 +5,7 @@ import models
 # reassigns on every request containing a body
 from flask import Blueprint, request, jsonify # jsonify needed to interperate JSON from request body
 
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 # will print table on console legibly...
 from playhouse.shortcuts import model_to_dict
@@ -19,6 +19,7 @@ accounts = Blueprint('accounts', 'accounts')
 
 # account index
 @accounts.route('/', methods=['GET'])
+@login_required # makes route unavailable to users that are not logged in!
 def accounts_index():
 	"""Get all Accounts from the DB as JSON"""
 	# all_accounts_query = models.Account.select()
@@ -26,6 +27,8 @@ def accounts_index():
 	# we need a list of dictionaries...
 	#changed to only display created accounts by user logged in
 	current_user_account_dicts = [model_to_dict(account) for account in current_user.accounts]
+
+	## NEED TO REMOVE PASSWORD IN THIS QUERY
 
 	print(current_user_account_dicts)
 

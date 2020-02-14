@@ -50,9 +50,24 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def load_user(userid):
 	try:
-		return models.User.get(models.User.id == user.id)
+		return models.User.get(models.User.id == userid)
 	except models.DoesNotExist:
 		return None
+
+
+# Flask defaults unauthorized error messages to be sent as html.
+# We want to send it as json data since this is an API that sends JSON...
+# more info: https://flask-login.readthedocs.io/en/latest/#customizing-the-login-process
+# This will also allow us to customize behavior for 'unauthorized' actions:
+@login_manager.unauthorized_handler
+def unauthorized():
+	return jsonify(
+		data={
+			'error': 'User not logged in'
+		},
+		message='You must be logged in to access that resource',
+		status=401
+	), 401
 
 
 # note: A domain name is considered an 'origin', currently our 'origin' for the development api server

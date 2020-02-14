@@ -132,5 +132,11 @@ step 31:
 step 32:
 	Use account index to only show accounts by user who is logged in.
 
+step 33:
+	Restrict access to routes unless logged in.
+
+step 34:
+	Send unauthorized_handler json object for when someone is not logged in; otherwise, login_required will default to sending html unauthorized message.
+
 note: - ******* run: 'deactivate'. To leave virtual environment. - always run 'pip3 freeze > requirements.txt' after installing a module. - run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
 
