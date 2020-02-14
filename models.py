@@ -42,7 +42,7 @@ class Account(Model):
 	# institution = CharField() # associated bank 
 	## Banks will now will have a one to many relationship/contain Accounts. 
 	# http://docs.peewee-orm.com/en/latest/peewee/example.html#models
-	institution = ForeignKeyField(Bank, backref='accounts') # backref makes us able to find account in bank
+	institution = ForeignKeyField(User, backref='accounts') # backref makes us able to find account in bank
 	name = CharField()
 	balance = IntegerField()
 	created_at = DateTimeField(default=datetime.datetime.now)
