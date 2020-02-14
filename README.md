@@ -107,5 +107,9 @@ step 23:
 step 24:
 	Now set-up a login route for existing users that will work similarly as the register route.
 
+step 25:
+	We will now be creating a one to many relationship with accounts. How can we do this without refacotoring our code? Maybe institutions/ banks will contain accounts? Other ideas? ForeignKey will be utilized and backreference to banks.
+	
+
 note: - ******* run: 'deactivate'. To leave virtual environment. - always run 'pip3 freeze > requirements.txt' after installing a module. - run 'pip3 install -r requirements.txt' to retrieve/ install modules from repo.
 

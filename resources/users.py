@@ -97,7 +97,7 @@ def login():
 
 			return jsonify(
 				data=user_dict,
-				message=f"Successfully logged in {user_dict} to API",
+				message=f"Successfully logged in to API: {user_dict}",
 				status=200
 			), 200
 
