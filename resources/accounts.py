@@ -115,18 +115,41 @@ def delete_account(id):
 def update_account(id):
 	payload = request.get_json()
 	# unpack operator * & **: https://codeyarns.github.io/tech/2012-04-25-unpack-operator-in-python.html
-	update_query = models.Account.update(**payload).where(models.Account.id == id)
+	# update_query = models.Account.update(**payload).where(models.Account.id == id)
+	# update_query.execute()
+	# # (benefits front end to retrive this)
+	# update_account = models.Account.get_by_id(id)
 
-	update_query.execute()
+	# make it so user can only delete their accounts
 
-	# (benefits front end to retrive this)
-	update_account = models.Account.get_by_id(id)
+	account = models.Account.get_by_id(id)
 
-	return jsonify(
- 		data=model_to_dict(update_account),
-  		message=f'Successfully updated account with id {id}',
-  		status=200
-	), 200
+	# if current user id == account id
+	if account.institution.id == current_user.id:
+		# one line if statement
+		account.name = payload['name'] if 'name' in payload else None
+		account.balance = payload['balance'] if 'balance' in payload else None
+
+		# see how: http://docs.peewee-orm.com/en/latest/peewee/querying.html#updating-existing-records
+		account.save()
+
+		account_dict = model_to_dict(account)
+
+		return jsonify(
+	 		data=account_dict,
+	  		message=f'Successfully updated account with id {id}',
+	  		status=200
+		), 200
+
+	# if account does not belong to user
+	else:
+		return jsonify(
+			data={
+				'error': 'FORBIDDEN'
+			},
+			message=f"Account's institution_id ({account.institution.id}) does not match logged in user ({current_user.id}).",
+			status=403
+		), 403
 
 
 # route to create account associated with institution that has the id
