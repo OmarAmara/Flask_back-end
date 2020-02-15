@@ -34,12 +34,13 @@ def accounts_index():
 
 	return jsonify(
 		data=current_user_account_dicts,
-		message=f'Successfully retrieved {len(current_user_account_dicts)} Accounts',
+		message=f'Successfully retrieved {len(current_user_account_dicts)} Accounts for {current_user.email}',
 		status=200
 	), 200
 
 # account create route
 @accounts.route('/', methods=['POST'])
+@login_required
 def create_account():
 	# .get_json() attaches to request object and extracts JSON from the request body
 	# similar to req.body in express servers!
@@ -71,19 +72,46 @@ def create_account():
 
 # account delete/destroy route
 @accounts.route('/<id>', methods=['Delete'])
+@login_required
 def delete_account(id):
 	# deleting data based on id identifier
-	delete_query = models.Account.delete().where(models.Account.id == id)
-	delete_query.execute()
-	return jsonify(
-		data={},
-		message=f'Successfully deleted Account with id {id}',
-		status=200
-	), 200
+	# delete_query = models.Account.delete().where(models.Account.id == id)
+	# delete_query.execute()
+
+
+	# this fix will insure that user will only be able to delete their account.
+
+	# FYI: Need to use try/except below -- catching models.DoesNotExist for in case wrong id is given,
+	# returned error would have to be JSON instead of HTML
+
+	# find account
+	account_to_delete = models.Acccount.get_by_id(id)
+	# print(account_to_delete)
+
+	# if there's a match
+	if current_user.id == account_to_delete.institution.id:
+		# read more on this method of deletion: http://docs.peewee-orm.com/en/latest/peewee/querying.html#deleting-records
+		account_to_delete.delete_instance()
+
+		return jsonify(
+			data={},
+			message=f'Successfully deleted Account with id {id}',
+			status=200
+		), 200
+
+	else:
+		return jsonify(
+			data={
+				'error': 'FORBIDDEN'
+			},
+			message='Account`s institution_id does not match with user logged in. ',
+			status=403
+		), 403
 
 
 # account update/ edit PUT route
 @accounts.route('/<id>', methods=['PUT'])
+@login_required
 def update_account(id):
 	payload = request.get_json()
 	# unpack operator * & **: https://codeyarns.github.io/tech/2012-04-25-unpack-operator-in-python.html
