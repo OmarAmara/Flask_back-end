@@ -38,6 +38,39 @@ def accounts_index():
 		status=200
 	), 200
 
+
+# account show route
+@accounts.route('/<id>', methods=['GET'])
+def get_one_accout(id):
+	account = models.Account.get_by_id(id)
+
+	# user only sees name and balance if they're not registered
+	# Will entice user to create account
+	if not current_user.is_authenticated:
+		return jsonify(
+			data={
+			'name': account.name,
+			'balance': account.balance
+			},
+			message='Registered users can access more info about this account.',
+			status=200
+		), 200
+	# if logged in/ registered, can see institution info
+	else:
+		account_dict = model_to_dict(account)
+		account_dict['institution'].pop('password')
+
+		# if user logged in and it is their account, can see created_at
+		if account.institution_id != current_user.id:
+			account_dict.pop('created_at')
+
+		return jsonify(
+			data=account_dict,
+			message=f"Found account with id {account.id}",
+			status=200
+		), 200
+
+
 # account create route
 @accounts.route('/', methods=['POST'])
 @login_required
