@@ -118,7 +118,7 @@ def delete_account(id):
 	# returned error would have to be JSON instead of HTML
 
 	# find account
-	account_to_delete = models.Acccount.get_by_id(id)
+	account_to_delete = models.Account.get_by_id(id)
 	# print(account_to_delete)
 
 	# if there's a match
